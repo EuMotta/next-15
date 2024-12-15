@@ -19,6 +19,11 @@ export default [
       'react-hooks': reactHooks,
       'import-helpers': importHelpers
     },
+    settings: {
+      react: {
+        version: 'detect'
+      }
+    },
     rules: {
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
