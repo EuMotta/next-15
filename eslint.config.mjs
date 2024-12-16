@@ -1,10 +1,10 @@
-import globals from 'globals';
 import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import pluginReact from 'eslint-plugin-react';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
-import reactHooks from 'eslint-plugin-react-hooks';
 import importHelpers from 'eslint-plugin-import-helpers';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import pluginReact from 'eslint-plugin-react';
+import reactHooks from 'eslint-plugin-react-hooks';
+import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -28,9 +28,34 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      'import-helpers/order-imports': [
+        'warn',
+        {
+          newlinesBetween: 'always',
+          groups: [
+            ['/^react/', '/^next/'],
+            'module',
+            '/^@shared/',
+            'absolute',
+            '/^components/',
+            '/^pages/',
+            '/utils/',
+            '/constants/',
+            '/^store/',
+            '/^styles/',
+            '/^templates/',
+            ['parent', 'sibling', 'index']
+          ],
+          alphabetize: {
+            order: 'asc',
+            ignoreCase: true
+          }
+        }
+      ],
       'prettier/prettier': [
         'warn',
         {
+          endOfLine: 'crlf',
           plugins: ['prettier-plugin-tailwindcss']
         }
       ]
