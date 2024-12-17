@@ -8,13 +8,25 @@ import tseslint from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
-  { languageOptions: { globals: globals.browser } },
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    languageOptions: { sourceType: 'commonjs' }
+  },
+  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   eslintPluginPrettierRecommended,
   {
+    ignores: [
+      '**/*.d.ts',
+      '**/node_modules/**',
+      '**/dist/**',
+      '**/coverage/**',
+      '**/public/**',
+      '**/plop-templates/**'
+    ],
+
     plugins: {
       'react-hooks': reactHooks,
       'import-helpers': importHelpers
