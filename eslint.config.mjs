@@ -40,6 +40,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      '@typescript-eslint/no-empty-object-type': 'off',
       'import-helpers/order-imports': [
         'warn',
         {

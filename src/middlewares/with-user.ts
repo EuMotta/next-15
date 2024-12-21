@@ -5,7 +5,7 @@ import { MiddlewareFactory } from './middleware-factory';
 export const auth: MiddlewareFactory = (next) => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
     const session = {};
-    const protectedRoutes = [''];
+    const protectedRoutes = ['/dashboard'];
     const authRoutes = [''];
     const isProtectedRoute = protectedRoutes.some((route) =>
       request.nextUrl.pathname.startsWith(route)

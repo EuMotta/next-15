@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 
-import Heading from '../header';
+import { Heading, HeadingSubtitle, HeadingTitle } from '../header';
 import styles from './empty-state.module.css';
 
 export interface EmptyStateProps {
@@ -13,7 +13,7 @@ export interface EmptyStateProps {
   reset?: () => void;
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({
+const EmptyState = ({
   title = 'Aconteceu um problema!',
   subtitle = 'Não sei ainda o que é, mas vou descobrir!',
   label = 'Tente novamente',
@@ -24,10 +24,13 @@ const EmptyState: React.FC<EmptyStateProps> = ({
 
   return (
     <div className={styles.emptyState_content}>
-      <Heading center title={title} subtitle={subtitle} />
+      <Heading center>
+        <HeadingTitle>{title}</HeadingTitle>
+        <HeadingSubtitle>{subtitle}</HeadingSubtitle>
+      </Heading>
       <div className={styles.emptyState_buttons}>
         {showReset && <button onClick={() => reset && reset()}>{label}</button>}
-        <button onClick={() => router.push('/')}>Voltar</button>
+        <button onClick={() => router.back()}>Voltar</button>
       </div>
     </div>
   );
